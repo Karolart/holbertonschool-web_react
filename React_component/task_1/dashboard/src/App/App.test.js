@@ -1,6 +1,6 @@
 import { shallow } from "enzyme";
 import React from "react";
-import App from "./App";
+import App from "../../../../task_0/dashboard/src/App/App";
 
 describe("<App />", () => {
   it("App renders without crashing", () => {
