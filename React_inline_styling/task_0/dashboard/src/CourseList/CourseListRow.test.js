@@ -15,7 +15,7 @@ describe("<CourseListRow />", () => {
     const item = wrapper.find("th");
 
     expect(item).toHaveLength(1);
-    expect(item.prop("colSpan")).toEqual("2");
+    expect(item.prop("colSpan")).toEqual(2);
   });
 
   it("When isHeader is true, renders two cells when textSecondCell is present", () => {
