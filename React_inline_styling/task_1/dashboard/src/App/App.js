@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import Notifications from "../Notifications/Notifications";
 import Header from "../Header/Header";
+import BodySection from "../BodySection/BodySection";
+import BodySectionWithMarginBottom from "../BodySection/BodySectionWithMarginBottom";
 import Login from "../Login/Login";
 import CourseList from "../CourseList/CourseList";
 import Footer from "../Footer/Footer";
 import PropTypes from "prop-types";
 import { getLatestNotification } from "../utils/utils";
-import "./App.css";
+import { StyleSheet, css } from "aphrodite";
 
 const listCourses = [
   { id: 1, name: "ES6", credit: 60 },
@@ -46,13 +48,25 @@ class App extends Component {
     return (
       <>
         <Notifications listNotifications={listNotifications} />
-        <div className="App">
+        <div className={css(styles.app)}>
           <Header />
         </div>
-        <div className="App-body">
-          {!isLoggedIn ? <Login /> : <CourseList listCourses={listCourses} />}
+        <div className={css(styles.body)}>
+          {!isLoggedIn ? (
+            <BodySectionWithMarginBottom title="Log in to continue">
+              <Login />
+            </BodySectionWithMarginBottom>
+          ) : (
+            <BodySectionWithMarginBottom title="Course list">
+              <CourseList listCourses={listCourses} />
+            </BodySectionWithMarginBottom>
+          )}
         </div>
-        <div className="App-footer">
+        <BodySection title="News from the School">
+          <p>Some Random Text</p>
+        </BodySection>
+
+        <div className={css(styles.footer)}>
           <Footer />
         </div>
       </>
@@ -69,5 +83,30 @@ App.propTypes = {
   isLoggedIn: PropTypes.bool,
   logOut: PropTypes.func,
 };
+
+const cssVars = {
+  mainColor: "#e01d3f",
+};
+
+const styles = StyleSheet.create({
+  app: {
+    borderBottom: `3px solid ${cssVars.mainColor}`,
+  },
+
+  body: {
+    display: "flex",
+    justifyContent: "center",
+  },
+
+  footer: {
+    borderTop: `3px solid ${cssVars.mainColor}`,
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    position: "fixed",
+    bottom: 0,
+    fontStyle: "italic",
+  },
+});
 
 export default App;
