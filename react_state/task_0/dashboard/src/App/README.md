@@ -3,7 +3,7 @@ __________________________________________________
 
 ## Learning Objectives  
   
-- What the state of a component or a container is  
+- What the state of a component or a container  
 - The lifecycle of a component  
 - How to modify a state and execute code in the right order  
 - What a controlled component is  
